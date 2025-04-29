@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load widget_tweaks %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+    <main id="tt-pageContent" class="tt-offset-none">
+        <div class="container">
+            <div class="tt-loginpages-wrapper">
+                <div class="tt-loginpages">
+                    <a href="{% url 'homepage' %}" class="tt-block-title">
+                        <img src="{% static 'images/logo.png' %}" alt="">
+                        <div class="tt-title">Welcome to DAS</div>
+                        <div class="tt-description">{% if form.errors %}{{ form.errors }}{% else %}Log into your account to manage this department announcement system.{% endif %} </div>
+                    </a>
+                    <form class="form-default" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="{{ form.username.id_for_label }}">Username</label>
+                            {% render_field form.username class="form-control" placeholder="johndoe" %}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.password.id_for_label }}">Password</label>
+                            {% render_field form.password class="form-control" placeholder="************" %}
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <div class="checkbox-group">
+                                        <input type="checkbox" id="settingsCheckBox01" name="checkbox">
+                                        <label for="settingsCheckBox01">
+                                            <span class="check"></span>
+                                            <span class="box"></span>
+                                            <span class="tt-text">Remember me</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col ml-auto text-right">
+                                <a href="#" class="tt-underline">Forgot Password</a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-secondary btn-block">Log in</button>
+                        </div>
+                        <p>
+                            Don’t have an account?
+                            <a href="#" class="tt-underline">Signup here</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+{% block create_new_announcement %}
+{% endblock %}
